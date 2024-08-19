@@ -10,7 +10,7 @@ app.use(
         origin: [
             "http://localhost:5173",
             "http://localhost:5174",
-            // "https://gadgedzonescic10.netlify.app"
+     
             
         ],
         credentials: true,
@@ -94,6 +94,37 @@ async function run() {
             const maxPrice = parseFloat(req.query.maxPrice) || 1000;
             query.price = { $gte: minPrice, $lte: maxPrice };
 
+            // console.log(minPrice, maxPrice)
+
+
+
+
+
+
+
+
+            try {
+
+                const allProducts = await phonesCollection.find(query)
+                    .sort(finalSortQuery)
+                    .skip(page * size)
+                    .limit(size)
+                    .toArray();
+
+                // const result = await phonesCollection.find(query).toArray();
+                // res.send(result);
+                const count = await phonesCollection.countDocuments(query)
+                // console.log(allProducts, count)
+
+                res.send({
+                    phones: allProducts,
+                    count: count
+                })
+            } catch (error) {
+                // console.error(error);
+                res.status(500).send({ message: "Internal Server Error" });
+            }
+        });
 
 
 
