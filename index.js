@@ -86,6 +86,15 @@ async function run() {
                 sortQuery.creationdate = 1; // Oldest first
             }
 
+            // Merge sorting objects
+            const finalSortQuery = { ...price_query, ...sortQuery };
+
+            // Filter by price range
+            const minPrice = parseFloat(req.query.minPrice) || 0;
+            const maxPrice = parseFloat(req.query.maxPrice) || 1000;
+            query.price = { $gte: minPrice, $lte: maxPrice };
+
+
 
 
 
