@@ -67,7 +67,18 @@ async function run() {
             const size = parseInt(req.query.size);
 
             // Initialize sorting objects
-        }
+            let price_query = {};
+            let sortQuery = {};
+
+            // Sort by price
+            const sort = req.query.sort || "";
+            if (sort === "asc") {
+                price_query.price = 1; // Ascending order
+            } else if (sort === "dsc") {
+                price_query.price = -1; // Descending order
+            }
+
+    
 
 
 
@@ -76,7 +87,7 @@ async function run() {
 
 
 
-
+        
 
 
 
