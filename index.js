@@ -10,7 +10,7 @@ app.use(
         origin: [
             "http://localhost:5173",
             "http://localhost:5174",
-
+            // "https://gadgedzonescic10.netlify.app"
             
         ],
         credentials: true,
@@ -40,7 +40,42 @@ async function run() {
         // Connect the client to the server	(optional starting in v4.7)
         // await client.connect();
 
-      
+        const database = client.db("GadgetZone");
+        const phonesCollection = database.collection("phones");
+
+
+        app.get('/phones', async (req, res) => {
+            const brand = req.query.brand; // Get brand from query params
+            const category = req.query.category; // Get category from query params
+            const name = req.query.productname; // Get category from query params
+            
+            let query = {};
+
+            if (brand && brand !== 'null') {
+                query.brand = brand;
+            }
+
+            if (category && category !== 'null') {
+                query.category = category;
+            }
+
+            if (name) {
+                query.productname = { $regex: name, $options: "i" };
+            }
+
+            const page = parseInt(req.query.page);
+            const size = parseInt(req.query.size);
+
+            // Initialize sorting objects
+        }
+
+
+
+
+
+
+
+
 
 
 
