@@ -93,7 +93,7 @@ async function run() {
             // Filter by price range
             const minPrice = parseFloat(req.query.minPrice) || 0;
             const maxPrice = parseFloat(req.query.maxPrice) || 1000;
-            query.price = { $gte: minPrice, $lte: maxPrice };
+            // query.price = { $gte: minPrice, $lte: maxPrice };
 
             // console.log(minPrice, maxPrice)
 
