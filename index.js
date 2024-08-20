@@ -10,7 +10,7 @@ app.use(
         origin: [
             "http://localhost:5173",
             "http://localhost:5174",
-            "https://66c3857531b8ce03c595f943--superlative-sprite-fbe562.netlify.app"
+         
      
             
         ],
@@ -39,7 +39,7 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
-        await client.connect();
+        // await client.connect();
 
         const database = client.db("GadgetZone");
         const phonesCollection = database.collection("phones");
@@ -112,7 +112,7 @@ async function run() {
                     .limit(size)
                     .toArray();
 
-                const result = await phonesCollection.find(query).toArray();
+                // const result = await phonesCollection.find(query).toArray();
                 // res.send(result);
                 const count = await phonesCollection.countDocuments(query)
                 // console.log(allProducts, count)
